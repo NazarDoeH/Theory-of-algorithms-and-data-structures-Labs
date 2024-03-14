@@ -28,13 +28,25 @@ class FunctionTester:
         tempArray = array
         tracemalloc.start()
         function(tempArray)            
-        return tracemalloc.get_traced_memory()[0]                           
+        return tracemalloc.get_traced_memory()[1]                           
 
     def TestSpeed(slef, function, array): #Визначення затрат часу
         tempArray = array
         startTime = perf_counter()
         function(tempArray)    
         return perf_counter() - startTime
+
+    def SortTestArray(self, function): #Сортування випадкових масивів за допомогою переданої в якості аргумента функції
+        function(self.floatArray10)
+        function(self.floatArray100)
+        function(self.floatArray500)
+        function(self.floatArray1000)
+
+        function(self.intArray10)
+        function(self.intArray100)
+        function(self.intArray500)
+        function(self.intArray1000)
+
 
     def TestSpeedAndMemory(self, function):
         self.memoryUsageInt[0] = self.TestMemory(function, self.intArray10)
